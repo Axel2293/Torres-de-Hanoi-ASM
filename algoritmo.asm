@@ -1,7 +1,7 @@
 
 .text
 	# n - total of disks
-	addi s0, zero, 5
+	addi s0, zero, 3
 	# Ram - First tower 
 	lui s1, 0x10010
 	addi t0, zero, 4

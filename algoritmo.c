@@ -5,7 +5,7 @@
 #define NUMDISK 3
 
 void print_towers (int32_t n, int32_t *tA, int32_t *tB, int32_t *tC);
-int8_t addtotower(int32_t n, int32_t disk, int32_t*tower);
+int8_t push(int32_t n, int32_t disk, int32_t*tower);
 void hanoi(int32_t N, int32_t *origen, int32_t *auxiliar, int32_t *destino);
 int32_t pop (int32_t *st);
 
@@ -72,7 +72,7 @@ void hanoi(int32_t N, int32_t *origen, int32_t *auxiliar, int32_t *destino){
         // get the disk at origin tower (Only one disk left)
         int32_t disk = pop(origen);
         // Move it to dest tower
-        addtotower(NUMDISK, disk, destino);
+        push(NUMDISK, disk, destino);
         moves++;
         printf("After moving disk %d to dest tower:\n", disk);
         print_towers(NUMDISK, origen, auxiliar, destino);
@@ -82,7 +82,7 @@ void hanoi(int32_t N, int32_t *origen, int32_t *auxiliar, int32_t *destino){
     hanoi(N-1, origen, destino, auxiliar);
     int32_t disk = pop(origen);
     printf("After moving disk %d to dest tower:\n", disk);
-    addtotower(NUMDISK, disk, destino);
+    push(NUMDISK, disk, destino);
     moves++;
     print_towers(NUMDISK, origen, auxiliar, destino);
     // Auxiliar is now origin, and origin is now auxiliar
@@ -90,7 +90,7 @@ void hanoi(int32_t N, int32_t *origen, int32_t *auxiliar, int32_t *destino){
 
 }
 
-int8_t addtotower(int32_t n, int32_t disk, int32_t*tower){
+int8_t push(int32_t n, int32_t disk, int32_t*tower){
     // Move on the array then find the free spot to place the disk at the top of the stack
     tower+=n-1;
     for (int32_t i = 0; i < n; i++)
