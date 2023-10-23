@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#define NUMDISK 2
+#define NUMDISK 3
 
 void print_towers (int32_t n, int32_t *tA, int32_t *tB, int32_t *tC);
 int8_t push(int32_t n, int32_t disk, int32_t*tower);
