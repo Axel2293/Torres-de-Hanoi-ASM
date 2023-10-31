@@ -74,6 +74,7 @@ void hanoi(int32_t N, int32_t *origen, int32_t *auxiliar, int32_t *destino){
         // Move it to dest tower
         push(NUMDISK, disk, destino);
         moves++;
+        
         printf("After moving disk %d to dest tower:\n", disk);
         print_towers(NUMDISK, origen, auxiliar, destino);
         return;
