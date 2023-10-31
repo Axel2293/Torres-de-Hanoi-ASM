@@ -1,10 +1,14 @@
+# Authors: 	Axel Escoto Garcia
+#			Roberto Mancilla
+
+#			Practica 1: Arquitectura y organizacion de computadoras
+#			Torres de Hanoi en ASM
+#
+#
 
 .text
 	# n - total of disks
 	addi s0, zero, 3
-	#CONSTANT of disks
-	add s7, zero, s0
-	
 	# Size of disk number
 	addi t0, zero, 4
 	#OFFSET Number bytes for every tower n * 4 (int)
@@ -38,7 +42,7 @@ next:	sub s1, s1, t1
 	jal exit
 
 hanoi:	
-	addi t2, zero, 1
+	#addi t2, zero, 1
 	if:	bne s0, t2, next2
 		# Take disk from origin and move to destiny
 		sw zero, 0(s1)
@@ -77,14 +81,13 @@ hanoi:
 		
 		addi sp, sp 8
 		
-		# Move disk Origin to Dest
+	# Move disk Origin to Dest
 		sw zero, 0(s1)
 		addi s1, s1, 4
 		addi s3, s3, -4
 		sw s0, 0(s3)
 
-		#jal pop
-		#jal push
+		# Add one disk move
 		addi s6, s6, 1
 		
 		
@@ -114,43 +117,6 @@ hanoi:
 		addi sp, sp 8
 		
 		jalr ra
-		
-		
-		
-
-# Always push to Tower 3 - Destiny
-push: 	
-	addi t2, zero, 0 # i
-	add s5, s3, t4
-	for2:	blt s7,t2, next3
-		lw t6, 0(s5)
-		ifph:	bne t6, zero, elseph
-			sw s4, 0(s5)
-			jal zero, next3
-		elseph:	addi t2, t2, 1
-			addi s5, s5, -4
-			jal zero, for2
-	next3: 	
-		jalr ra
-	
-
-# Always pop from Tower 1 - Origin
-pop:
-	addi t2, zero, 0 # i
-	add s5, s1, zero # s5 -> origin tower-start-top
-	for3:	blt s7,t2, next4
-		lw t6, 0(s5)
-		ifpop:	beq t6, zero, elsepop
-			lw s4, 0(s5)
-			sw zero, 0(s5)
-			jal zero, next4
-		elsepop:addi t2, t2, 1
-			addi s5, s5, 4
-			jal zero, for3
-	next4: 	
-		jalr ra
-
-exit: nop
 	
 	
 	
