@@ -8,9 +8,7 @@
 
 .text
 	# n - total of disks
-	addi s0, zero, 3
-	# Size of disk number
-	addi t0, zero, 4
+	addi s0, zero, 15
 	#OFFSET Number bytes for every tower n * 4 (int)
 	slli t1, s0, 2 
 	# Towers top
@@ -42,7 +40,7 @@ next:	sub s1, s1, t1
 	jal exit
 
 hanoi:	
-	#addi t2, zero, 1
+	addi t2, zero, 1
 	if:	bne s0, t2, next2
 		# Take disk from origin and move to destiny
 		sw zero, 0(s1)
@@ -117,7 +115,8 @@ hanoi:
 		addi sp, sp 8
 		
 		jalr ra
-	
+
+exit: nop
 	
 	
 	
